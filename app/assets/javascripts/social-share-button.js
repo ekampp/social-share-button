@@ -9,9 +9,14 @@ window.SocialShareButton = {
     site = $(el).data('site');
     title = encodeURIComponent($(el).parent().data('title') || '');
     img = encodeURIComponent($(el).parent().data("img") || '');
-    url = encodeURIComponent($(el).parent().data("url") || '');
+    do{
+      url = decodeURIComponent($(el).parent().data("url") || '');
+    }while(url != decodeURIComponent($(el).parent().data("url") || ''));
+    
     if (url.length === 0) {
-      url = encodeURIComponent(location.href);
+      do{
+        url = decodeURIComponent(location.href);
+      }while(url != decodeURIComponent(location.href);
     }
     switch (site) {
       case "weibo":
