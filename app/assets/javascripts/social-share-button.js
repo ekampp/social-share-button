@@ -7,11 +7,18 @@ window.SocialShareButton = {
   share: function(el) {
     var get_tumblr_extra, img, site, title, tumblr_params, url;
     site = $(el).data('site');
+    description = $(el).parent().data('desc');
     title = encodeURIComponent($(el).parent().data('title') || '');
     img = encodeURIComponent($(el).parent().data("img") || '');
+    
     do{
       url = decodeURIComponent($(el).parent().data("url") || '');
     }while(url != decodeURIComponent($(el).parent().data("url") || ''));
+    
+    do{
+      img = decodeURIComponent($(el).parent().data("img") || '');
+    }while(img != decodeURIComponent($(el).parent().data("img") || ''));
+    console.log($(el));
     
     if (url.length === 0) {
       do{
@@ -29,7 +36,7 @@ window.SocialShareButton = {
         SocialShareButton.openUrl("http://shuo.douban.com/!service/share?href=" + url + "&name=" + title + "&image=" + img);
         break;
       case "facebook":
-        SocialShareButton.openUrl("http://www.facebook.com/sharer.php?t=" + title + "&u=" + url);
+        SocialShareButton.openUrl("http://www.facebook.com/sharer/sharer.php?s=100&p[url]=" + url + "&p[images][0]=" + img + "&p[title]=" + title + "&p[summary]=" + description);
         break;
       case "qq":
         SocialShareButton.openUrl("http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=" + url + "&title=" + title + "&pics=" + img);
