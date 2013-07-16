@@ -22,8 +22,8 @@ window.SocialShareButton = {
     
     if (url.length === 0) {
       do{
-        url = decodeURIComponent(location.href);
-      }while(url != decodeURIComponent(location.href));
+        url = decodeURIComponent($(el).parent().data("url") || location.href);
+      }while(url != decodeURIComponent($(el).parent().data("url") || location.href));
     }
     switch (site) {
       case "weibo":
